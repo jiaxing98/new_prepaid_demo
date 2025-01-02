@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:new_prepaid_demo/core/env.dart';
 import 'package:new_prepaid_demo/core/l10n/l10n.dart';
 import 'package:new_prepaid_demo/core/theme/theme.dart';
+import 'package:new_prepaid_demo/data/data.dart';
+import 'package:new_prepaid_demo/domain/domain.dart';
+import 'package:new_prepaid_demo/presentation/presentation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt sl = GetIt.instance;
 
@@ -27,17 +30,37 @@ Future<void> initializedApp() async {
       ],
     ),
   );
-}
 
-void injectDependencies() {
   _injectRepositories();
   _injectBlocs();
 }
 
-void _injectRepositories() {}
+void _injectRepositories() {
+  sl.registerSingleton<AccountRepository>(AccountRepositoryImpl());
+  sl.registerSingleton<PlanRepository>(PlanRepositoryImpl());
+  sl.registerSingleton<PaymentRepository>(PaymentRepositoryImpl());
+}
 
 void _injectBlocs() {
   // ! singleton - use BlocProvider.value to not close the stream
+  sl.registerLazySingleton<ProfileBloc>(
+    () => ProfileBloc(repository: sl.get<AccountRepository>()),
+  );
+  sl.registerLazySingleton<PlanBloc>(
+    () => PlanBloc(repository: sl.get<PlanRepository>()),
+  );
+  sl.registerLazySingleton<ReloadHistoryBloc>(
+    () => ReloadHistoryBloc(repository: sl.get<AccountRepository>()),
+  );
 
   // ! factory - use BlocProvider to create new instance
+  sl.registerFactory<ChangeEmailBloc>(
+    () => ChangeEmailBloc(repository: sl.get<AccountRepository>()),
+  );
+  sl.registerFactory<ChangePasswordBloc>(
+    () => ChangePasswordBloc(repository: sl.get<AccountRepository>()),
+  );
+  sl.registerFactory<PaymentBloc>(
+    () => PaymentBloc(repository: sl.get<PaymentRepository>()),
+  );
 }
