@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:new_prepaid_demo/core/theme/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'theme_state.dart';
 
@@ -39,11 +39,18 @@ class ThemeCubit extends Cubit<ThemeState> {
     emit(state.copyWith(mode: mode));
   }
 
-  Future<void> changeTheme() async {
+  Future<void> changeRandomTheme() async {
     var random = Random().nextInt(appThemes.length);
     final randomTheme = appThemes.entries.toList()[random];
 
     await _sp.setString(_themeData, randomTheme.key);
     emit(state.copyWith(theme: randomTheme.value));
+  }
+
+  Future<void> changeTheme(String themeName) async {
+    if (!appThemes.containsKey(themeName)) return;
+
+    await _sp.setString(_themeData, themeName);
+    emit(state.copyWith(theme: appThemes[themeName]));
   }
 }

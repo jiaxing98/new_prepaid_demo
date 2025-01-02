@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => context.read<ThemeCubit>().changeTheme(),
+          onPressed: () => context.read<ThemeCubit>().changeRandomTheme(),
           icon: Icon(Icons.brush),
         ),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,

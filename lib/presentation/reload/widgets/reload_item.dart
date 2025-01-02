@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_prepaid_demo/core/extensions/build_context.dart';
 import 'package:new_prepaid_demo/domain/models/reload_plan.dart';
 
 class ReloadItem extends StatelessWidget {
@@ -22,8 +23,8 @@ class ReloadItem extends StatelessWidget {
       height: height,
       padding: EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: activeBorder ?? Border.all(color: Colors.grey),
+        color: context.colorScheme.primary,
+        border: activeBorder ?? Border.all(color: context.colorScheme.primaryContainer),
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Column(
@@ -58,7 +59,7 @@ class ReloadItem extends StatelessWidget {
           Text(
             "${plan.availableDays.toString()} days \nvalidity",
             textAlign: TextAlign.center,
-            style: const TextStyle(color: Colors.black54),
+            style: TextStyle(color: context.colorScheme.onPrimary),
           ),
         ],
       ),

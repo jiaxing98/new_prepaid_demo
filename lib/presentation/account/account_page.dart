@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:new_prepaid_demo/presentation/_shared/widgets/stylish_scaffold.dart';
 import 'package:new_prepaid_demo/presentation/account/widgets/account_container.dart';
+import 'package:new_prepaid_demo/presentation/account/widgets/theme_dialog.dart';
 import 'package:new_prepaid_demo/router/router.dart';
 
 class AccountPage extends StatelessWidget {
@@ -59,7 +60,7 @@ class AccountSettings extends StatelessWidget {
           image: "",
           label: "Theme",
           onTap: () {
-            // showDialog(context: context, builder: (ctx) => const ThemeDialog());
+            showDialog(context: context, builder: (ctx) => const ThemeDialog());
           },
         ),
       ],

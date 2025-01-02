@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:new_prepaid_demo/core/extensions/build_context.dart';
 import 'package:new_prepaid_demo/domain/models/profile.dart';
 import 'package:new_prepaid_demo/router/router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -94,8 +95,8 @@ class _ProfileInfoItem extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Colors.grey),
+        color: context.colorScheme.primary,
+        border: Border.all(color: context.colorScheme.primaryContainer),
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Row(
@@ -147,7 +148,7 @@ class _ProfileInfoAction extends StatelessWidget {
       child: Text(
         label,
         style: TextStyle(
-          color: Colors.red,
+          color: context.colorScheme.primaryContainer,
           fontSize: 16.0,
           fontWeight: FontWeight.bold,
         ),

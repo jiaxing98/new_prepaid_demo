@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_prepaid_demo/core/extensions/build_context.dart';
 
 enum PaymentType { eWallet, fpx, card }
 
@@ -70,9 +71,9 @@ class PaymentMethodItem extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(12.0),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: isSelected ? context.colorScheme.primary : Colors.grey,
             border: isSelected
-                ? Border.all(color: Theme.of(context).primaryColor, width: 2.0)
+                ? Border.all(color: context.colorScheme.primaryContainer, width: 2.0)
                 : Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(10.0),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_prepaid_demo/core/extensions/build_context.dart';
 
 class AccountContainer extends StatelessWidget {
   final String title;
@@ -25,7 +26,7 @@ class AccountContainer extends StatelessWidget {
         SizedBox(height: 8.0),
         Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: context.colorScheme.primary,
             borderRadius: BorderRadius.circular(12.0),
             boxShadow: [
               BoxShadow(
