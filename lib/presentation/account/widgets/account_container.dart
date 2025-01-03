@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:new_prepaid_demo/core/extensions/build_context.dart';
 
 class AccountContainer extends StatelessWidget {
@@ -94,7 +95,7 @@ class AccountContainerTile extends StatelessWidget {
                   child: Icon(Icons.abc), //todo: to change
                 ),
                 SizedBox(width: 20.0),
-                Text(label),
+                Text(label).animate().fade(duration: 500.ms),
               ],
             ),
             if (trailing != null) trailing!,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:new_prepaid_demo/core/extensions/build_context.dart';
 import 'package:new_prepaid_demo/domain/models/profile.dart';
@@ -112,7 +113,6 @@ class ProfileInfoItem extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(width: 8.0),
               Skeletonizer(
                 enabled: isLoading,
                 child: Text(
@@ -121,7 +121,7 @@ class ProfileInfoItem extends StatelessWidget {
                 ),
               ),
             ],
-          ),
+          ).animate().fade(duration: 500.ms),
           if (action != null) action!,
         ],
       ),

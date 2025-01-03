@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:new_prepaid_demo/core/extensions/build_context.dart';
 import 'package:new_prepaid_demo/domain/models/reload_plan.dart';
 
@@ -62,7 +63,7 @@ class ReloadItem extends StatelessWidget {
             style: TextStyle(color: context.colorScheme.onPrimary),
           ),
         ],
-      ),
+      ).animate().fade(duration: 500.ms),
     );
   }
 }
