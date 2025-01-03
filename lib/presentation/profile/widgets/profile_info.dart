@@ -27,16 +27,16 @@ class ProfileInfo extends StatelessWidget {
       separatorBuilder: (ctx, index) => SizedBox(height: 16.0),
       itemBuilder: (ctx, index) {
         return [
-          _ProfileInfoItem(
+          ProfileInfoItem(
             title: "Name",
             description: profile.name,
             isLoading: isLoading,
           ),
-          _ProfileInfoItem(
+          ProfileInfoItem(
             title: "E-mail",
             description: profile.email,
             isLoading: isLoading,
-            action: _ProfileInfoAction(
+            action: ProfileInfoAction(
               label: 'Edit',
               onTap: isLoading
                   ? null
@@ -48,23 +48,23 @@ class ProfileInfo extends StatelessWidget {
                     },
             ),
           ),
-          _ProfileInfoItem(
+          ProfileInfoItem(
             title: "Password",
             description: "********",
             isLoading: isLoading,
-            action: _ProfileInfoAction(
+            action: ProfileInfoAction(
               label: 'Edit',
               onTap: () {
                 context.pushNamed(Routes.changePassword);
               },
             ),
           ),
-          _ProfileInfoItem(
+          ProfileInfoItem(
             title: "Plan",
             description: profile.plan,
             isLoading: isLoading,
           ),
-          _ProfileInfoItem(
+          ProfileInfoItem(
             title: "Account Number",
             description: profile.accountNumber,
             isLoading: isLoading,
@@ -75,14 +75,14 @@ class ProfileInfo extends StatelessWidget {
   }
 }
 
-//region _ProfileInfoItem
-class _ProfileInfoItem extends StatelessWidget {
+//region ProfileInfoItem
+class ProfileInfoItem extends StatelessWidget {
   final String title;
   final String description;
   final bool isLoading;
   final Widget? action;
 
-  const _ProfileInfoItem({
+  const ProfileInfoItem({
     super.key,
     required this.title,
     required this.description,
@@ -95,8 +95,8 @@ class _ProfileInfoItem extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: context.colorScheme.primary,
-        border: Border.all(color: context.colorScheme.primaryContainer),
+        color: context.colorScheme.primaryContainer,
+        border: Border.all(color: context.colorScheme.primary),
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Row(
@@ -130,12 +130,12 @@ class _ProfileInfoItem extends StatelessWidget {
 }
 //endregion
 
-//region _ProfileInfoAction
-class _ProfileInfoAction extends StatelessWidget {
+//region ProfileInfoAction
+class ProfileInfoAction extends StatelessWidget {
   final String label;
   final void Function()? onTap;
 
-  const _ProfileInfoAction({
+  const ProfileInfoAction({
     super.key,
     required this.label,
     required this.onTap,
@@ -148,7 +148,7 @@ class _ProfileInfoAction extends StatelessWidget {
       child: Text(
         label,
         style: TextStyle(
-          color: context.colorScheme.primaryContainer,
+          color: context.colorScheme.primary,
           fontSize: 16.0,
           fontWeight: FontWeight.bold,
         ),

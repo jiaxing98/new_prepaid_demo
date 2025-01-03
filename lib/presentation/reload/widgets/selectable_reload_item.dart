@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_prepaid_demo/core/extensions/build_context.dart';
 import 'package:new_prepaid_demo/domain/models/reload_plan.dart';
 import 'package:new_prepaid_demo/presentation/reload/widgets/reload_item.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -33,8 +34,9 @@ class SelectableReloadItem extends StatelessWidget {
           width: width,
           height: height,
           plan: plan,
-          activeBorder:
-              isSelected ? Border.all(color: Theme.of(context).primaryColor, width: 2.0) : null,
+          activeBorder: isSelected
+              ? Border.all(color: context.colorScheme.onPrimaryContainer, width: 2.0)
+              : null,
         ),
       ),
     );

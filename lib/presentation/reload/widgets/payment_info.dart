@@ -13,15 +13,15 @@ class PaymentInfo extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(12.0),
       decoration: BoxDecoration(
-        color: context.colorScheme.primary,
-        border: Border.all(color: context.colorScheme.primaryContainer),
+        color: context.colorScheme.primaryContainer,
+        border: Border.all(color: context.colorScheme.primary),
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Row(
         children: [
           ReloadItem(
             plan: plan,
-            activeBorder: Border.all(color: context.colorScheme.primaryContainer, width: 2.0),
+            activeBorder: Border.all(color: context.colorScheme.primary, width: 2.0),
           ),
           SizedBox(width: 30.0),
           Text(

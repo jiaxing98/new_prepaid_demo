@@ -71,9 +71,9 @@ class PaymentMethodItem extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(12.0),
           decoration: BoxDecoration(
-            color: isSelected ? context.colorScheme.primary : Colors.grey,
+            color: isSelected ? context.colorScheme.primaryContainer : Colors.grey,
             border: isSelected
-                ? Border.all(color: context.colorScheme.primaryContainer, width: 2.0)
+                ? Border.all(color: context.colorScheme.primary, width: 2.0)
                 : Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(10.0),
           ),

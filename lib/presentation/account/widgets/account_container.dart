@@ -26,21 +26,21 @@ class AccountContainer extends StatelessWidget {
         SizedBox(height: 8.0),
         Container(
           decoration: BoxDecoration(
-            color: context.colorScheme.primary,
+            color: context.colorScheme.primaryContainer,
             borderRadius: BorderRadius.circular(12.0),
             boxShadow: [
               BoxShadow(
                 offset: const Offset(0, 3),
                 spreadRadius: 2.0,
                 blurRadius: 6.0,
-                color: const Color(0xff694F4F).withOpacity(0.1),
+                color: const Color(0xff694F4F).withAlpha(50),
                 blurStyle: BlurStyle.inner,
               ),
               BoxShadow(
                 offset: const Offset(0, 1),
                 spreadRadius: 0.0,
                 blurRadius: 3.0,
-                color: const Color(0xff694F4F).withOpacity(0.1),
+                color: const Color(0xff694F4F).withAlpha(50),
                 blurStyle: BlurStyle.inner,
               ),
             ],

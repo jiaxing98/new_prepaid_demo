@@ -51,8 +51,8 @@ class _ChangeEmailPageState extends State<ChangeEmailPage> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ProfileBloc>(
-          create: (context) => sl.get(),
+        BlocProvider<ProfileBloc>.value(
+          value: sl.get(),
         ),
         BlocProvider<ChangeEmailBloc>(
           create: (context) => sl.get(),

@@ -19,16 +19,15 @@ class _ReloadHistoryPageState extends State<ReloadHistoryPage> {
   @override
   void initState() {
     super.initState();
+
+    final bloc = sl.get<ReloadHistoryBloc>();
+    if (bloc.state is ReloadHistoryFetchInitial) bloc.add(const ReloadHistoryFetch());
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) {
-        final bloc = sl.get<ReloadHistoryBloc>();
-        if (bloc.state is ReloadHistoryFetchInitial) bloc.add(const ReloadHistoryFetch());
-        return bloc;
-      },
+    return BlocProvider<ReloadHistoryBloc>.value(
+      value: sl.get(),
       child: StylishScaffold(
         title: "Reload History",
         child: BlocConsumer<ReloadHistoryBloc, ReloadHistoryState>(
@@ -42,7 +41,7 @@ class _ReloadHistoryPageState extends State<ReloadHistoryPage> {
           builder: (context, state) {
             return RefreshIndicator(
               onRefresh: () async {
-                context.read().add(const ReloadHistoryFetch());
+                context.read<ReloadHistoryBloc>().add(const ReloadHistoryFetch());
               },
               child: switch (state) {
                 ReloadHistoryFetchInitial() ||
@@ -52,7 +51,7 @@ class _ReloadHistoryPageState extends State<ReloadHistoryPage> {
                     itemCount: state.reloadHistoriesGroupByMonth.length,
                     separatorBuilder: (ctx, index) => SizedBox(height: 16.0),
                     itemBuilder: (ctx, index) {
-                      return _ReloadHistoryMonth(
+                      return ReloadHistoryMonth(
                         monthYear: state.reloadHistoriesGroupByMonth.keys.toList()[index],
                         reloadHistories: state.reloadHistoriesGroupByMonth.values.toList()[index],
                       );
@@ -89,12 +88,12 @@ class _ReloadHistoryPageState extends State<ReloadHistoryPage> {
   }
 }
 
-//region _ReloadHistoryMonth
-class _ReloadHistoryMonth extends StatelessWidget {
+//region ReloadHistoryMonth
+class ReloadHistoryMonth extends StatelessWidget {
   final DateTime monthYear;
   final List<ReloadHistory> reloadHistories;
 
-  const _ReloadHistoryMonth({
+  const ReloadHistoryMonth({
     super.key,
     required this.monthYear,
     required this.reloadHistories,
@@ -118,26 +117,26 @@ class _ReloadHistoryMonth extends StatelessWidget {
           );
         }
 
-        return _ReloadHistoryItem(item: reloadHistories[index - 1]);
+        return ReloadHistoryItem(item: reloadHistories[index - 1]);
       },
     );
   }
 }
 //endregion
 
-//region _ReloadHistoryItem
-class _ReloadHistoryItem extends StatelessWidget {
+//region ReloadHistoryItem
+class ReloadHistoryItem extends StatelessWidget {
   final ReloadHistory item;
 
-  const _ReloadHistoryItem({super.key, required this.item});
+  const ReloadHistoryItem({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Colors.grey),
+        color: context.colorScheme.primaryContainer,
+        border: Border.all(color: context.colorScheme.primary),
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Row(
@@ -157,7 +156,7 @@ class _ReloadHistoryItem extends StatelessWidget {
               SizedBox(width: 8.0),
               Text(
                 item.dateTime.yMdhmma,
-                style: TextStyle(color: Colors.black38),
+                style: TextStyle(color: context.colorScheme.onPrimaryContainer),
               ),
             ],
           ),

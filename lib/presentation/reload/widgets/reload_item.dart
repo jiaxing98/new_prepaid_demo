@@ -23,8 +23,8 @@ class ReloadItem extends StatelessWidget {
       height: height,
       padding: EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-        color: context.colorScheme.primary,
-        border: activeBorder ?? Border.all(color: context.colorScheme.primaryContainer),
+        color: context.colorScheme.primaryContainer,
+        border: activeBorder ?? Border.all(color: context.colorScheme.primary),
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Column(

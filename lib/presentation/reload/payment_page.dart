@@ -30,8 +30,8 @@ class _PaymentPageState extends State<PaymentPage> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ProfileBloc>(
-          create: (context) => sl.get(),
+        BlocProvider<ProfileBloc>.value(
+          value: sl.get(),
         ),
         BlocProvider<PaymentBloc>(
           create: (context) => sl.get(),

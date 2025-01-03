@@ -22,16 +22,15 @@ class _ReloadPageState extends State<ReloadPage> {
   @override
   void initState() {
     super.initState();
+
+    final bloc = sl.get<PlanBloc>();
+    if (bloc.state is PlanFetchInitial) bloc.add(const PlanFetch());
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<PlanBloc>(
-      create: (context) {
-        final bloc = sl.get<PlanBloc>();
-        if (bloc.state is PlanFetchInitial) bloc.add(const PlanFetch());
-        return bloc;
-      },
+    return BlocProvider<PlanBloc>.value(
+      value: sl.get(),
       child: StylishScaffold(
         title: "Reload",
         child: BlocBuilder<PlanBloc, PlanState>(
