@@ -18,16 +18,15 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
+
+    final bloc = sl.get<ProfileBloc>();
+    if (bloc.state is ProfileFetchInitial) bloc.add(const ProfileFetch());
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) {
-        final bloc = sl.get<ProfileBloc>();
-        if (bloc.state is ProfileFetchInitial) bloc.add(const ProfileFetch());
-        return bloc;
-      },
+    return BlocProvider<ProfileBloc>.value(
+      value: sl.get<ProfileBloc>(),
       child: StylishScaffold(
         title: "Profile",
         child: BlocConsumer<ProfileBloc, ProfileState>(
